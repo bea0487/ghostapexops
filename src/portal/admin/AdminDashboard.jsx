@@ -69,9 +69,9 @@ const AdminDashboard = () => {
       thirtyDaysFromNow.setDate(thirtyDaysFromNow.getDate() + 30)
       
       const { count: expiringCount } = await supabase
-        .from('driver_qualification_files')
+        .from('driver_files')
         .select('*', { count: 'exact', head: true })
-        .or(`cdl_expiration_date.lte.${thirtyDaysFromNow.toISOString()},medical_card_expiration_date.lte.${thirtyDaysFromNow.toISOString()}`)
+        .or(`license_expiry.lte.${thirtyDaysFromNow.toISOString()},medical_expiry.lte.${thirtyDaysFromNow.toISOString()}`)
 
       // Get recent tickets
       const { data: tickets } = await supabase
