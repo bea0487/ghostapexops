@@ -1,0 +1,431 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ghost Rider Apex Operations - Cyberpunk Design System */
+
+@layer base {
+  :root {
+    /* Core dark background */
+    --background: 240 15% 5%;
+    --foreground: 180 100% 95%;
+
+    /* Cards with glass effect */
+    --card: 240 15% 8%;
+    --card-foreground: 180 100% 95%;
+
+    --popover: 240 15% 10%;
+    --popover-foreground: 180 100% 95%;
+
+    /* Primary: Teal */
+    --primary: 174 72% 56%;
+    --primary-foreground: 240 15% 5%;
+
+    /* Secondary: Purple */
+    --secondary: 280 85% 65%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Accent: Pink */
+    --accent: 330 85% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Muted for subtle elements */
+    --muted: 240 15% 15%;
+    --muted-foreground: 220 10% 60%;
+
+    /* Destructive */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 15% 20%;
+    --input: 240 15% 15%;
+    --ring: 174 72% 56%;
+
+    --radius: 0.75rem;
+
+    /* Custom colors for gradients */
+    --cyber-teal: 174 72% 56%;
+    --cyber-purple: 280 85% 65%;
+    --cyber-pink: 330 85% 60%;
+    --cyber-dark: 240 15% 5%;
+    --cyber-darker: 240 20% 3%;
+
+    /* Glow effects */
+    --glow-teal: 0 0 20px hsl(174 72% 56% / 0.5);
+    --glow-purple: 0 0 20px hsl(280 85% 65% / 0.5);
+    --glow-pink: 0 0 20px hsl(330 85% 60% / 0.5);
+
+    /* Sidebar */
+    --sidebar-background: 240 15% 6%;
+    --sidebar-foreground: 180 100% 95%;
+    --sidebar-primary: 174 72% 56%;
+    --sidebar-primary-foreground: 240 15% 5%;
+    --sidebar-accent: 280 85% 65%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 240 15% 20%;
+    --sidebar-ring: 174 72% 56%;
+  }
+
+  .dark {
+    --background: 240 15% 5%;
+    --foreground: 180 100% 95%;
+    --card: 240 15% 8%;
+    --card-foreground: 180 100% 95%;
+    --popover: 240 15% 10%;
+    --popover-foreground: 180 100% 95%;
+    --primary: 174 72% 56%;
+    --primary-foreground: 240 15% 5%;
+    --secondary: 280 85% 65%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 330 85% 60%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 240 15% 15%;
+    --muted-foreground: 220 10% 60%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 15% 20%;
+    --input: 240 15% 15%;
+    --ring: 174 72% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Big Shoulders Stencil Text', sans-serif;
+  }
+
+  /* Typography System */
+  h1 {
+    font-family: 'Black Ops One', cursive;
+    @apply tracking-wide;
+  }
+
+  h2 {
+    font-family: 'Sirin Stencil', cursive;
+    @apply tracking-wide;
+  }
+
+  h3, h4 {
+    font-family: 'Allerta Stencil', sans-serif;
+    @apply tracking-wide;
+  }
+
+  p, span, li, a {
+    font-family: 'Big Shoulders Stencil Text', sans-serif;
+    @apply font-medium;
+  }
+}
+
+@layer components {
+  /* Cyber Gradient Backgrounds */
+  .cyber-gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--cyber-teal)), hsl(var(--cyber-purple)), hsl(var(--cyber-pink)));
+  }
+
+  .cyber-gradient-bg {
+    background: linear-gradient(135deg, hsl(var(--cyber-teal) / 0.2), hsl(var(--cyber-purple) / 0.2), hsl(var(--cyber-pink) / 0.2));
+  }
+
+  .cyber-gradient-border {
+    position: relative;
+    background: hsl(var(--card));
+  }
+
+  .cyber-gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--cyber-teal)), hsl(var(--cyber-purple)), hsl(var(--cyber-pink)));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  /* Neon Glow Effects */
+  .glow-teal {
+    box-shadow: var(--glow-teal);
+  }
+
+  .glow-purple {
+    box-shadow: var(--glow-purple);
+  }
+
+  .glow-pink {
+    box-shadow: var(--glow-pink);
+  }
+
+  .glow-multi {
+    box-shadow: 
+      0 0 20px hsl(var(--cyber-teal) / 0.3),
+      0 0 40px hsl(var(--cyber-purple) / 0.2),
+      0 0 60px hsl(var(--cyber-pink) / 0.1);
+  }
+
+  /* Glass Effect */
+  .glass {
+    @apply backdrop-blur-xl;
+    background: hsl(var(--card) / 0.8);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  /* Animated gradient border */
+  @keyframes gradient-rotate {
+    0% { --gradient-angle: 0deg; }
+    100% { --gradient-angle: 360deg; }
+  }
+
+  .animated-border {
+    position: relative;
+    background: hsl(var(--card));
+    border-radius: var(--radius);
+  }
+
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: conic-gradient(
+      from var(--gradient-angle, 0deg),
+      hsl(var(--cyber-teal)),
+      hsl(var(--cyber-purple)),
+      hsl(var(--cyber-pink)),
+      hsl(var(--cyber-teal))
+    );
+    border-radius: inherit;
+    z-index: -1;
+    animation: gradient-rotate 3s linear infinite;
+  }
+
+  @property --gradient-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  /* Scan line effect */
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--cyber-dark) / 0.03) 2px,
+      hsl(var(--cyber-dark) / 0.03) 4px
+    );
+    pointer-events: none;
+  }
+
+  /* Grid pattern background */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Hover effects */
+  .cyber-hover {
+    @apply transition-all duration-300;
+  }
+
+  .cyber-hover:hover {
+    @apply transform scale-[1.02];
+    box-shadow: 
+      0 0 30px hsl(var(--cyber-teal) / 0.4),
+      0 0 60px hsl(var(--cyber-purple) / 0.2);
+  }
+
+  /* Button variants */
+  .btn-cyber-primary {
+    @apply relative overflow-hidden px-6 py-3 font-bold uppercase tracking-wider;
+    background: linear-gradient(135deg, hsl(var(--cyber-teal)), hsl(var(--cyber-purple)));
+    color: hsl(var(--background));
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+  }
+
+  .btn-cyber-primary:hover {
+    box-shadow: 
+      0 0 20px hsl(var(--cyber-teal) / 0.5),
+      0 0 40px hsl(var(--cyber-purple) / 0.3);
+    transform: translateY(-2px);
+  }
+
+  .btn-cyber-secondary {
+    @apply relative px-6 py-3 font-bold uppercase tracking-wider;
+    background: transparent;
+    color: hsl(var(--foreground));
+    border: 2px solid transparent;
+    background-image: linear-gradient(hsl(var(--card)), hsl(var(--card))), 
+                      linear-gradient(135deg, hsl(var(--cyber-teal)), hsl(var(--cyber-purple)), hsl(var(--cyber-pink)));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+  }
+
+  .btn-cyber-secondary:hover {
+    box-shadow: 
+      0 0 15px hsl(var(--cyber-teal) / 0.3),
+      0 0 30px hsl(var(--cyber-purple) / 0.2);
+  }
+
+  /* Pulse animation for status indicators */
+  @keyframes cyber-pulse {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 10px hsl(var(--cyber-teal) / 0.5);
+    }
+    50% {
+      opacity: 0.7;
+      box-shadow: 0 0 20px hsl(var(--cyber-teal) / 0.8);
+    }
+  }
+
+  .cyber-pulse {
+    animation: cyber-pulse 2s ease-in-out infinite;
+  }
+
+  /* Flicker animation for neon text */
+  @keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      text-shadow: 
+        0 0 10px hsl(var(--cyber-teal)),
+        0 0 20px hsl(var(--cyber-teal)),
+        0 0 30px hsl(var(--cyber-purple)),
+        0 0 40px hsl(var(--cyber-purple));
+    }
+    20%, 24%, 55% {
+      text-shadow: none;
+    }
+  }
+
+  .neon-text {
+    animation: neon-flicker 3s infinite alternate;
+  }
+
+  /* Slide in animations */
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s ease-out forwards;
+  }
+
+  /* Stagger delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+
+  /* Float animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Legacy compatibility classes */
+  .font-orbitron {
+    font-family: 'Black Ops One', cursive;
+  }
+
+  .text-gradient {
+    @apply cyber-gradient-text;
+  }
+
+  .glow-text-cyan {
+    text-shadow: 0 0 10px hsl(var(--cyber-teal) / 0.5), 0 0 20px hsl(var(--cyber-teal) / 0.3);
+  }
+
+  .btn-glow {
+    @apply btn-cyber-primary;
+  }
+
+  .card-hover {
+    @apply cyber-hover;
+  }
+
+  .bg-grid {
+    @apply cyber-grid;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(var(--cyber-teal)), hsl(var(--cyber-purple)));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, hsl(var(--cyber-purple)), hsl(var(--cyber-pink)));
+}
+
+/* Selection styling */
+::selection {
+  background: hsl(var(--cyber-purple) / 0.5);
+  color: hsl(var(--foreground));
+}

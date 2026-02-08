@@ -1,0 +1,27 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "@supabase-url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase-anon-key",
+    "VITE_SUPABASE_URL": "@supabase-url",
+    "VITE_SUPABASE_ANON_KEY": "@supabase-anon-key",
+    "VITE_STRIPE_PUBLISHABLE_KEY": "@stripe-publishable-key"
+  },
+  "build": {
+    "env": {
+      "SUPABASE_SERVICE_ROLE_KEY": "@supabase-service-role-key",
+      "AWS_ACCESS_KEY_ID": "@aws-access-key-id",
+      "AWS_SECRET_ACCESS_KEY": "@aws-secret-access-key",
+      "AWS_REGION": "@aws-region",
+      "AWS_S3_BUCKET": "@aws-s3-bucket",
+      "STRIPE_SECRET_KEY": "@stripe-secret-key",
+      "STRIPE_WEBHOOK_SECRET": "@stripe-webhook-secret",
+      "FRONTEND_URL": "@frontend-url",
+      "NODE_ENV": "production"
+    }
+  }
+}

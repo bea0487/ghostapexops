@@ -1,0 +1,115 @@
+# ============================================================================
+# Supabase Local Development Configuration
+# ============================================================================
+# This file configures Supabase for local development
+# For production, these settings should be configured in the Supabase Dashboard
+# ============================================================================
+
+[auth]
+# Enable email/password authentication
+enable_signup = true
+enable_anonymous_sign_ins = false
+
+# Email authentication settings
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = false  # Set to true in production to require email confirmation
+
+# JWT settings
+[auth.jwt]
+# JWT expiration time: 24 hours (86400 seconds)
+exp = 86400
+# Default role for authenticated users
+default_role = "authenticated"
+# JWT algorithm
+algorithm = "HS256"
+
+# Hook configuration for custom JWT claims
+[auth.hook.custom_access_token]
+enabled = true
+uri = "pg-functions://postgres/public/custom_access_token_hook"
+
+# Session settings
+[auth.sessions]
+# Session timeout: 24 hours (86400 seconds)
+timebox = 86400
+# Inactivity timeout: 24 hours (86400 seconds)
+inactivity_timeout = 86400
+
+# Password requirements
+[auth.password]
+# Minimum password length
+min_length = 8
+# Require at least one uppercase letter
+require_uppercase = true
+# Require at least one lowercase letter
+require_lowercase = true
+# Require at least one number
+require_number = true
+# Require at least one special character
+require_special = false
+
+# Security settings
+[auth.security]
+# Refresh token rotation
+refresh_token_rotation_enabled = true
+# Refresh token reuse interval (seconds)
+refresh_token_reuse_interval = 10
+
+# External providers (disabled for this project)
+[auth.external.google]
+enabled = false
+
+[auth.external.github]
+enabled = false
+
+[auth.external.azure]
+enabled = false
+
+# ============================================================================
+# DATABASE CONFIGURATION
+# ============================================================================
+
+[db]
+# Database port
+port = 5432
+# Major version
+major_version = 15
+
+# ============================================================================
+# API CONFIGURATION
+# ============================================================================
+
+[api]
+# API port
+port = 54321
+# Enable API schemas
+schemas = ["public", "storage"]
+# Extra search path
+extra_search_path = ["public"]
+# Max rows returned
+max_rows = 1000
+
+# ============================================================================
+# STORAGE CONFIGURATION
+# ============================================================================
+
+[storage]
+# Storage backend (for local development)
+backend = "file"
+# File size limit: 10MB (10485760 bytes)
+file_size_limit = 10485760
+
+# ============================================================================
+# COMMENTS
+# ============================================================================
+
+# This configuration file is used for local development with Supabase CLI
+# For production deployment:
+# 1. Configure these settings in the Supabase Dashboard
+# 2. Navigate to Authentication > Settings
+# 3. Set JWT expiry to 86400 seconds (24 hours)
+# 4. Enable the custom_access_token_hook in Authentication > Hooks
+# 5. Configure password requirements in Authentication > Policies
+
